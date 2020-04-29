@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  mysql-development:
+    image: mysql:8.0.17
+    environment:
+      MYSQL_DATABASE: storedb
+      MYSQL_USER: store
+      MYSQL_PASSWORD: store
+      MYSQL_ROOT_PASSWORD: store
+    ports:
+      - "3308:3306"
