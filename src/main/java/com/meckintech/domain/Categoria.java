@@ -1,6 +1,5 @@
 package com.meckintech.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -11,63 +10,70 @@ import java.util.Objects;
 
 @Entity
 public class Categoria implements Serializable {
+    private static final long serialVersionUID = 805155494431769515L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
 
     @JsonManagedReference
-    @ManyToMany(mappedBy="categorias")
+    @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 
 
-    public Categoria() {}
+    public Categoria() {
+    }
 
-    public Categoria(Integer id, String nome) {
+    public Categoria(final Integer id, final String nome) {
         this.id = id;
         this.nome = nome;
     }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
-    public Categoria setId(Integer id) {
+    public Categoria setId(final Integer id) {
         this.id = id;
         return this;
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
-    public Categoria setNome(String nome) {
+    public Categoria setNome(final String nome) {
         this.nome = nome;
         return this;
     }
+
     public List<Produto> getProdutos() {
-        return produtos;
+        return this.produtos;
     }
 
-    public Categoria setProdutos(List<Produto> produtos) {
+    public Categoria setProdutos(final List<Produto> produtos) {
         this.produtos = produtos;
         return this;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Categoria categoria = (Categoria) o;
-        return getId().equals(categoria.getId());
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        final Categoria categoria = (Categoria) o;
+        return this.getId().equals(categoria.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(this.getId());
     }
 
 
-    }
+}
 
 

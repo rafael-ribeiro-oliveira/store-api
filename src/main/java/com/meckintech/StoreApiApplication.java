@@ -1,13 +1,8 @@
 package com.meckintech;
 
-import com.meckintech.domain.Categoria;
-import com.meckintech.domain.Cidade;
-import com.meckintech.domain.Estado;
-import com.meckintech.domain.Produto;
-import com.meckintech.repository.CategoriaRepository;
-import com.meckintech.repository.CidadeRepository;
-import com.meckintech.repository.EstadoRepository;
-import com.meckintech.repository.ProdutoRepository;
+import com.meckintech.domain.*;
+import com.meckintech.enumeration.TipoCliente;
+import com.meckintech.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +21,10 @@ public class StoreApiApplication implements CommandLineRunner {
     private EstadoRepository estadoRepository;
     @Autowired
     private CidadeRepository cidadeRepository;
-
+    @Autowired
+    private ClienteRepository clienteRepository;
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
     public StoreApiApplication() {
     }
@@ -68,6 +66,18 @@ public class StoreApiApplication implements CommandLineRunner {
         this.estadoRepository.saveAll(Arrays.asList(est1, est2));
         this.cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
+        final Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com",
+                "36378912377", TipoCliente.PESSOAFISICA);
+        cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
+
+        final Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303",
+                "Jardim", "38220834", cli1, c1);
+        final Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800",
+                "Centro", "38777012", cli1, c2);
+        cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+
+        this.clienteRepository.saveAll(Arrays.asList(cli1));
+        this.enderecoRepository.saveAll(Arrays.asList(e1, e2));
 
     }
 }
