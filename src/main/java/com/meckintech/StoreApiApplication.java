@@ -39,7 +39,7 @@ public class StoreApiApplication implements CommandLineRunner {
     public static void main(final String[] args) {
         SpringApplication.run(StoreApiApplication.class, args);
     }
-
+    
     @Override
     public void run(final String... args) throws Exception {
 

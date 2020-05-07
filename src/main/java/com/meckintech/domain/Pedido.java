@@ -3,7 +3,9 @@ package com.meckintech.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pedido implements Serializable {
@@ -25,7 +27,18 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "endereco_de_entraga_id")
     private Endereco enderecoDeEntrega;
 
+    @OneToMany(mappedBy = "id.produto")
+    private final Set<ItemPedido> itens = new HashSet<>();
+
     public Pedido() {
+    }
+
+    public static long getSerialVersionUID() {
+        return Pedido.serialVersionUID;
+    }
+
+    public Set<ItemPedido> getItens() {
+        return this.itens;
     }
 
     public Pedido(final Integer id, final Date instante, final Cliente cliente, final Endereco enderecoDeEntrega) {

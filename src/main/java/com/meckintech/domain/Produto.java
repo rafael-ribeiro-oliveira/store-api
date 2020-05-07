@@ -4,83 +4,104 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 @Entity
-public class Produto implements Serializable{
+public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private Double preco;
 
     @JsonBackReference
     @ManyToMany
-    @JoinTable (name = "produto_categoria",
-    joinColumns = @JoinColumn(name = "produto_id"),
-    inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    @JoinTable(name = "produto_categoria",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
     private List<Categoria> categorias = new ArrayList<>();
+
+    @OneToMany(mappedBy = "id.produto")
+    private final Set<ItemPedido> itens = new HashSet<>();
 
     public Produto() {
     }
 
-    public Integer getId() {
-        return id;
+    public static long getSerialVersionUID() {
+        return Produto.serialVersionUID;
     }
 
-    public Produto setId(Integer id) {
+    public Set<ItemPedido> getItens() {
+        return this.itens;
+    }
+
+    public List<Pedido> getPedidos() {
+        final List<Pedido> lista = new ArrayList<>();
+        for (final ItemPedido x : this.itens) {
+            lista.add(x.getPedido());
+        }
+        return lista;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public Produto setId(final Integer id) {
         this.id = id;
         return this;
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
-    public Produto setNome(String nome) {
+    public Produto setNome(final String nome) {
         this.nome = nome;
         return this;
     }
 
     public Double getPreco() {
-        return preco;
+        return this.preco;
     }
 
-    public Produto setPreco(Double preco) {
+    public Produto setPreco(final Double preco) {
         this.preco = preco;
         return this;
     }
 
     public List<Categoria> getCategorias() {
-        return categorias;
+        return this.categorias;
     }
 
-    public Produto setCategorias(List<Categoria> categorias) {
+    public Produto setCategorias(final List<Categoria> categorias) {
         this.categorias = categorias;
         return this;
     }
 
-    public Produto(Integer id, String nome, Double preco) {
+    public Produto(final Integer id, final String nome, final Double preco) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Produto produto = (Produto) o;
-        return getId().equals(produto.getId());
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        final Produto produto = (Produto) o;
+        return this.getId().equals(produto.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(this.getId());
     }
 }
