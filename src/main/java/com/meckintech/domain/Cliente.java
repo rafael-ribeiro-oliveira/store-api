@@ -1,5 +1,6 @@
 package com.meckintech.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.meckintech.enumeration.TipoCliente;
 
@@ -28,6 +29,7 @@ public class Cliente implements Serializable {
     private final Set<String> telefones = new HashSet<>();
 
 
+    @JsonBackReference
     @OneToMany(mappedBy = "cliente")
     private final List<Pedido> pedidos = new ArrayList<>();
 

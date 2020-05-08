@@ -1,6 +1,7 @@
 package com.meckintech.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,6 +25,7 @@ public class Produto implements Serializable {
     )
     private List<Categoria> categorias = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private final Set<ItemPedido> itens = new HashSet<>();
 
@@ -38,6 +40,7 @@ public class Produto implements Serializable {
         return this.itens;
     }
 
+    @JsonIgnore
     public List<Pedido> getPedidos() {
         final List<Pedido> lista = new ArrayList<>();
         for (final ItemPedido x : this.itens) {
