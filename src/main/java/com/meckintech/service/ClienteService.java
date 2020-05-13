@@ -16,7 +16,7 @@ public class ClienteService {
         this.categoriaRepository = categoriaRepository;
     }
 
-    public Cliente buscar(final Integer id) {
+    public Cliente find(final Integer id) {
         final Optional<Cliente> optionalCategoria = this.categoriaRepository.findById(id);
         return optionalCategoria
                 .orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado! id:" + id
