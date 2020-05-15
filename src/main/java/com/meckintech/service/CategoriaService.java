@@ -3,6 +3,7 @@ package com.meckintech.service;
 import com.meckintech.domain.Categoria;
 import com.meckintech.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -31,6 +32,17 @@ public class CategoriaService {
     public Categoria update(final Categoria obj) {
         this.find(obj.getId());
         return this.categoriaRepository.save(obj);
-
     }
+
+    public void delete(final Integer id) {
+        this.find(id);
+        try {
+            this.categoriaRepository.deleteById(id);
+        } catch (final DataIntegrityViolationException e) {
+            throw new com.meckintech.service.DataIntegrityViolationException("Não é possivel " +
+                    "excluir uma categoria com produtos");
+        }
+    }
+
 }
+
