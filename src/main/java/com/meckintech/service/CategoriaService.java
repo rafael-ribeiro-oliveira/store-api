@@ -4,6 +4,9 @@ import com.meckintech.domain.Categoria;
 import com.meckintech.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,5 +52,10 @@ public class CategoriaService {
         return this.categoriaRepository.findAll();
     }
 
-}
+    public Page<Categoria> findPage(final Integer page, final Integer linesPerPage, final String orderBy, final String direction) {
+        final PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        return this.categoriaRepository.findAll(pageRequest);
 
+    }
+
+}

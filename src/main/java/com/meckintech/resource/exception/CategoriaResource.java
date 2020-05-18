@@ -4,6 +4,7 @@ import com.meckintech.DTO.CategoriaDTO;
 import com.meckintech.domain.Categoria;
 import com.meckintech.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -47,6 +48,18 @@ public class CategoriaResource {
         final List<Categoria> categoriaList = this.categoriaService.findAll();
         final List<CategoriaDTO> categoriaDTOList = categoriaList.stream().map(categoria -> new CategoriaDTO(categoria)).collect(Collectors.toList());
         return ResponseEntity.ok().body(categoriaDTOList);
+
+    }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<Page<CategoriaDTO>> findPage(
+            @RequestParam(value = "page", defaultValue = "0") final Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") final Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "nome") final String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") final String direction) {
+        final Page<Categoria> categoriaPage = this.categoriaService.findPage(page, linesPerPage, orderBy, direction);
+        final Page<CategoriaDTO> listDto = categoriaPage.map(categoria -> new CategoriaDTO(categoria));
+        return ResponseEntity.ok().body(listDto);
 
     }
 
