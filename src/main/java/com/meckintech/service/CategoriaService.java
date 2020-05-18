@@ -1,5 +1,6 @@
 package com.meckintech.service;
 
+import com.meckintech.DTO.CategoriaDTO;
 import com.meckintech.domain.Categoria;
 import com.meckintech.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +59,8 @@ public class CategoriaService {
 
     }
 
+    public Categoria fromDTO(final CategoriaDTO objDto) {
+        return new Categoria(objDto.getId(), objDto.getNome());
+
+    }
 }
