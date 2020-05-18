@@ -1,5 +1,6 @@
 package com.meckintech.resource.exception;
 
+import com.meckintech.DTO.CategoriaDTO;
 import com.meckintech.domain.Categoria;
 import com.meckintech.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/categorias")
@@ -39,10 +42,11 @@ public class CategoriaResource {
 
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable final Integer id) {
-        this.categoriaService.delete(id);
-        return ResponseEntity.noContent().build();
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> findAll() {
+        final List<Categoria> categoriaList = this.categoriaService.findAll();
+        final List<CategoriaDTO> categoriaDTOList = categoriaList.stream().map(categoria -> new CategoriaDTO(categoria)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(categoriaDTOList);
 
     }
 
