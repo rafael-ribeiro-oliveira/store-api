@@ -30,7 +30,7 @@ public class ClienteService {
 
     public Cliente update(final Cliente obj) {
         final Cliente newObj = this.find(obj.getId());
-        this.updateDat(newObj, obj);
+        this.updateData(newObj, obj);
         return this.clienteRepository.save(obj);
     }
 
@@ -61,7 +61,7 @@ public class ClienteService {
     }
 
 
-    private void updateDat(final Cliente newObj, final Cliente obj) {
+    private void updateData(final Cliente newObj, final Cliente obj) {
         newObj.setNome(obj.getNome());
         newObj.setEmail(obj.getEmail());
 
