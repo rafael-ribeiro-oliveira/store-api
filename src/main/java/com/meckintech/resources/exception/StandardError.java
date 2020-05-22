@@ -1,6 +1,4 @@
-package com.meckintech.resource.exception;
-
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
+package com.meckintech.resources.exception;
 
 import java.io.Serializable;
 
@@ -11,36 +9,36 @@ public class StandardError implements Serializable {
     private String msg;
     private long TimeStamp;
 
-    public StandardError(Integer status, String msg, long timeStamp) {
+    public StandardError(final Integer status, final String msg, final long timeStamp) {
         this.status = status;
         this.msg = msg;
-        TimeStamp = timeStamp;
+        this.TimeStamp = timeStamp;
     }
 
     public Integer getStatus() {
-        return status;
+        return this.status;
     }
 
-    public StandardError setStatus(Integer status) {
+    public StandardError setStatus(final Integer status) {
         this.status = status;
         return this;
     }
 
     public String getMsg() {
-        return msg;
+        return this.msg;
     }
 
-    public StandardError setMsg(String msg) {
+    public StandardError setMsg(final String msg) {
         this.msg = msg;
         return this;
     }
 
     public long getTimeStamp() {
-        return TimeStamp;
+        return this.TimeStamp;
     }
 
-    public StandardError setTimeStamp(long timeStamp) {
-        TimeStamp = timeStamp;
+    public StandardError setTimeStamp(final long timeStamp) {
+        this.TimeStamp = timeStamp;
         return this;
     }
 }

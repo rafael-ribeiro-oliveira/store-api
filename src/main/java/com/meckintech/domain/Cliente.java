@@ -3,8 +3,11 @@ package com.meckintech.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.meckintech.enumeration.TipoCliente;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.*;
 
@@ -15,7 +18,13 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotEmpty(message = "Preenchemento obrigatório")
+    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String nome;
+
+    @NotEmpty(message = "Preenchemento obrigatório")
+    @Email(message = "Email invalido")
     private String email;
     private String cpfOuCnpj;
     private Integer tipo;
@@ -37,11 +46,12 @@ public class Cliente implements Serializable {
     }
 
     public Cliente(final Integer id, final String nome, final String email, final String cpfOuCnpj, final TipoCliente tipo) {
+
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipo = tipo.getCod();
+        this.tipo = (tipo == null) ? null : tipo.getCod();
     }
 
     public Integer getId() {

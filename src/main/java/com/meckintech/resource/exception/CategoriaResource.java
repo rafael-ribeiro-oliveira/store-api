@@ -46,6 +46,12 @@ public class CategoriaResource {
 
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable final Integer id) {
+        this.categoriaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<CategoriaDTO>> findAll() {
         final List<Categoria> categoriaList = this.categoriaService.findAll();
