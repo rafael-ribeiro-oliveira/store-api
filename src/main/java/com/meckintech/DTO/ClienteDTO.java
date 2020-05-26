@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class ClienteDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+    public String getCpfOuCnpj;
 
     private Integer id;
     private String nome;
@@ -48,4 +49,5 @@ public class ClienteDTO implements Serializable {
         this.email = email;
         return this;
     }
+    
 }
