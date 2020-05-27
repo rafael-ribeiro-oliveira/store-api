@@ -70,7 +70,7 @@ public class ClienteService {
             this.clienteRepository.deleteById(id);
         } catch (final org.springframework.dao.DataIntegrityViolationException e) {
             throw new com.meckintech.service.DataIntegrityViolationException("Não é possivel " +
-                    "excluir porque há entidades relacioandas");
+                    "excluir porque há pedidos relacioandas");
         }
     }
 
