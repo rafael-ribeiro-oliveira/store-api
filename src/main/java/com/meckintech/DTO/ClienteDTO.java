@@ -1,7 +1,10 @@
 package com.meckintech.DTO;
 
 import com.meckintech.domain.Cliente;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class ClienteDTO implements Serializable {
@@ -9,7 +12,13 @@ public class ClienteDTO implements Serializable {
     public String getCpfOuCnpj;
 
     private Integer id;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String nome;
+
+    @NotEmpty(message = "Preenchmento obrigatório")
+    @Email(message = "Email invalido")
     private String email;
 
 
@@ -49,5 +58,5 @@ public class ClienteDTO implements Serializable {
         this.email = email;
         return this;
     }
-    
+
 }

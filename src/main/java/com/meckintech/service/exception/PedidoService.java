@@ -1,4 +1,4 @@
-package com.meckintech.service;
+package com.meckintech.service.exception;
 
 import com.meckintech.domain.Pedido;
 import com.meckintech.repository.PedidoRepository;

@@ -1,7 +1,7 @@
 package com.meckintech.resources.exception;
 
 
-import com.meckintech.service.ObjectNotFoundException;
+import com.meckintech.service.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

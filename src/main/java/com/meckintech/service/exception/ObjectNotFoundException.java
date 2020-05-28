@@ -1,19 +1,18 @@
-package com.meckintech.service;
+package com.meckintech.service.exception;
 
 public class ObjectNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public ObjectNotFoundException(String msg){
+    public ObjectNotFoundException(final String msg) {
         super(msg);
 
     }
 
-    public ObjectNotFoundException(String msg, Throwable cause){
+    public ObjectNotFoundException(final String msg, final Throwable cause) {
         super(msg, cause);
 
     }
-
 
 
 }

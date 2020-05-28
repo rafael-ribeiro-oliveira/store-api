@@ -1,9 +1,9 @@
-package com.meckintech.resource.exception;
+package com.meckintech.resource;
 
 import com.meckintech.DTO.ClienteDTO;
 import com.meckintech.DTO.ClienteNewDTO;
 import com.meckintech.domain.Cliente;
-import com.meckintech.service.ClienteService;
+import com.meckintech.service.exception.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

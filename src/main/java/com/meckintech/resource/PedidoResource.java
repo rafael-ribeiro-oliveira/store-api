@@ -1,7 +1,7 @@
-package com.meckintech.resource.exception;
+package com.meckintech.resource;
 
 import com.meckintech.domain.Pedido;
-import com.meckintech.service.PedidoService;
+import com.meckintech.service.exception.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

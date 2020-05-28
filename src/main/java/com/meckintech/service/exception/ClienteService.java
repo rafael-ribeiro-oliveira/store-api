@@ -1,4 +1,4 @@
-package com.meckintech.service;
+package com.meckintech.service.exception;
 
 import com.meckintech.DTO.ClienteDTO;
 import com.meckintech.DTO.ClienteNewDTO;
@@ -69,7 +69,7 @@ public class ClienteService {
         try {
             this.clienteRepository.deleteById(id);
         } catch (final org.springframework.dao.DataIntegrityViolationException e) {
-            throw new com.meckintech.service.DataIntegrityViolationException("Não é possivel " +
+            throw new DataIntegrityViolationException("Não é possivel " +
                     "excluir porque há pedidos relacioandas");
         }
     }

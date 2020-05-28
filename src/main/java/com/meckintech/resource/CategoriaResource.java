@@ -1,8 +1,8 @@
-package com.meckintech.resource.exception;
+package com.meckintech.resource;
 
 import com.meckintech.DTO.CategoriaDTO;
 import com.meckintech.domain.Categoria;
-import com.meckintech.service.CategoriaService;
+import com.meckintech.service.exception.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
