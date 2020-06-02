@@ -47,11 +47,6 @@ public class StoreApiApplication implements CommandLineRunner {
 
         final Categoria cat1 = new Categoria(null, "Informatica");
         final Categoria cat2 = new Categoria(null, "Escritorio");
-        final Categoria cat3 = new Categoria(null, "Cama, Mesa e Banho");
-        final Categoria cat4 = new Categoria(null, "Eletronicos");
-        final Categoria cat5 = new Categoria(null, "Jardinagem ");
-        final Categoria cat6 = new Categoria(null, "Decoração");
-        final Categoria cat7 = new Categoria(null, "Perfumaria");
 
         final Produto p1 = new Produto(null, "Computador", 2000.00);
         final Produto p2 = new Produto(null, "Impressora", 800.00);
@@ -64,6 +59,10 @@ public class StoreApiApplication implements CommandLineRunner {
         p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
         p3.getCategorias().addAll(Arrays.asList(cat1));
 
+
+        this.categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+        this.produtoRpository.saveAll(Arrays.asList(p1, p2, p3));
+
         final Estado est1 = new Estado(null, "Minas Gerais");
         final Estado est2 = new Estado(null, "São Paulo");
 
@@ -74,20 +73,20 @@ public class StoreApiApplication implements CommandLineRunner {
         est1.getCidades().addAll(Arrays.asList(c1));
         est2.getCidades().addAll(Arrays.asList(c2, c3));
 
-        this.categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
-        this.produtoRpository.saveAll(Arrays.asList(p1, p2, p3));
 
         this.estadoRepository.saveAll(Arrays.asList(est1, est2));
         this.cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
         final Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com",
                 "36378912377", TipoCliente.PESSOAFISICA);
+
         cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 
         final Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303",
                 "Jardim", "38220834", cli1, c1);
         final Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800",
                 "Centro", "38777012", cli1, c2);
+
         cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
         this.clienteRepository.saveAll(Arrays.asList(cli1));

@@ -12,8 +12,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/clientes")
@@ -21,6 +19,7 @@ public class ClienteResource {
 
     @Autowired
     private ClienteService clienteService;
+    private Cliente obj;
 
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> find(@PathVariable final Integer id) {
@@ -29,10 +28,9 @@ public class ClienteResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<ClienteDTO>> findAll() {
-        final List<Cliente> categoriaList = this.clienteService.findAll();
-        final List<ClienteDTO> categoriaDTOList = categoriaList.stream().map(categoria -> new ClienteDTO(categoria)).collect(Collectors.toList());
-        return ResponseEntity.ok().body(categoriaDTOList);
+    public ResponseEntity<Cliente> find(@RequestParam(value = "value") final String email) {
+        final Cliente obj = this.clienteService.findByEmail(email);
+        return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
@@ -45,10 +43,10 @@ public class ClienteResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@Valid @RequestBody final ClienteNewDTO objDto, @PathVariable final Integer id) {
-        final Cliente obj = this.clienteService.fromDTO(objDto);
+    public ResponseEntity<Void> update(@Valid @RequestBody final ClienteDTO objDto, @PathVariable final Integer id) {
+        Cliente obj = this.clienteService.fromDTO(objDto);
         obj.setId(id);
-        final Cliente categoria = this.clienteService.update(obj);
+        obj = this.clienteService.update(obj);
         return ResponseEntity.noContent().build();
 
     }
@@ -67,7 +65,7 @@ public class ClienteResource {
             @RequestParam(value = "orderBy", defaultValue = "nome") final String orderBy,
             @RequestParam(value = "direction", defaultValue = "ASC") final String direction) {
         final Page<Cliente> categoriaPage = this.clienteService.findPage(page, linesPerPage, orderBy, direction);
-        final Page<ClienteDTO> listDto = categoriaPage.map(categoria -> new ClienteDTO(categoria));
+        final Page<ClienteDTO> listDto = categoriaPage.map(categoria -> new ClienteDTO(this.obj));
         return ResponseEntity.ok().body(listDto);
 
     }

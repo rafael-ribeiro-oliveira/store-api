@@ -114,5 +114,10 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
         return this;
     }
+
+    public Cliente findByEmail(final String email) {
+        return null;
+    }
+
 }
 
