@@ -9,7 +9,6 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @ClienteUpdate
-
 public class ClienteDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     public String getCpfOuCnpj;
