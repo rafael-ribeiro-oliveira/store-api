@@ -3,6 +3,7 @@ package com.meckintech.service.exception;
 import com.meckintech.DTO.CategoriaDTO;
 import com.meckintech.domain.Categoria;
 import com.meckintech.repository.CategoriaRepository;
+import com.meckintech.service.exception.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -45,7 +46,7 @@ public class CategoriaService {
         try {
             this.categoriaRepository.deleteById(id);
         } catch (final DataIntegrityViolationException e) {
-            throw new com.meckintech.service.exception.DataIntegrityViolationException("Não é possivel " +
+            throw new com.meckintech.service.exception.exception.DataIntegrityViolationException("Não é possivel " +
                     "excluir uma categoria com produtos");
         }
     }

@@ -1,6 +1,6 @@
 package com.meckintech.DTO;
 
-import com.meckintech.service.validation.ClienteInsert;
+import com.meckintech.service.exception.validation.ClienteInsert;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;

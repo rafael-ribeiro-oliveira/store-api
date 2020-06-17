@@ -1,4 +1,4 @@
-package com.meckintech.service.validation;
+package com.meckintech.service.exception.validation;
 
 import com.meckintech.DTO.ClienteDTO;
 import com.meckintech.domain.Cliente;

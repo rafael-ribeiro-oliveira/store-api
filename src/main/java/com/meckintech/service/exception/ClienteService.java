@@ -9,6 +9,8 @@ import com.meckintech.enumeration.TipoCliente;
 import com.meckintech.repository.CidadeRepository;
 import com.meckintech.repository.ClienteRepository;
 import com.meckintech.repository.EnderecoRepository;
+import com.meckintech.service.exception.exception.DataIntegrityViolationException;
+import com.meckintech.service.exception.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -1,4 +1,4 @@
-package com.meckintech.service.validation;
+package com.meckintech.service.exception.validation;
 
 import java.util.InputMismatchException;
 

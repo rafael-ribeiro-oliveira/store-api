@@ -2,6 +2,7 @@ package com.meckintech.service.exception;
 
 import com.meckintech.domain.Pedido;
 import com.meckintech.repository.PedidoRepository;
+import com.meckintech.service.exception.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

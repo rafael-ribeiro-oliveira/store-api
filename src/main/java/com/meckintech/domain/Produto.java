@@ -9,7 +9,7 @@ import java.util.*;
 
 
 @Entity
-public class Produto implements Serializable {
+public class Produto extends Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,19 +49,23 @@ public class Produto implements Serializable {
         return lista;
     }
 
+    @Override
     public Integer getId() {
         return this.id;
     }
 
+    @Override
     public Produto setId(final Integer id) {
         this.id = id;
         return this;
     }
 
+    @Override
     public String getNome() {
         return this.nome;
     }
 
+    @Override
     public Produto setNome(final String nome) {
         this.nome = nome;
         return this;

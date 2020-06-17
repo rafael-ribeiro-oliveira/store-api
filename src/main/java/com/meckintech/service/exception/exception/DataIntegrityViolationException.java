@@ -1,4 +1,4 @@
-package com.meckintech.service.exception;
+package com.meckintech.service.exception.exception;
 
 public class DataIntegrityViolationException extends RuntimeException {
 

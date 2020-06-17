@@ -1,7 +1,7 @@
 package com.meckintech.DTO;
 
 import com.meckintech.domain.Cliente;
-import com.meckintech.service.validation.ClienteUpdate;
+import com.meckintech.service.exception.validation.ClienteUpdate;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
